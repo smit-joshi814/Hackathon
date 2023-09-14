@@ -1,4 +1,7 @@
 import 'package:design/auth/firebase_auth_repository.dart';
+import 'package:design/models/user_model.dart';
+import 'package:design/user_repository/user_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,8 +12,17 @@ class RegistrationController extends GetxController {
   final email = TextEditingController();
   final password = TextEditingController();
 
-  void registerUser(String email, String password) {
-    AuthenticationRepository.instance
+  final userRepo = Get.put(UserRepository());
+
+  Future<User?> registerUser(String email, String password) async {
+    return await AuthenticationRepository.instance
         .createUserWithNameEmailAndPassword(email, password);
+  }
+
+  Future<void> createUser(UserModel user) async {
+    User? userCredential = await registerUser(user.email, user.password);
+
+    user.id = userCredential!.uid;
+    userRepo.createUser(user);
   }
 }

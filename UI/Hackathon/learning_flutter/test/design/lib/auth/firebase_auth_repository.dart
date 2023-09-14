@@ -1,7 +1,9 @@
 import 'package:design/auth/auth_exceptions.dart';
 import 'package:design/screens/home.dart';
 import 'package:design/screens/login.dart';
+import 'package:design/utility/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AuthenticationRepository extends GetxController {
@@ -22,21 +24,33 @@ class AuthenticationRepository extends GetxController {
         : Get.offAll(() => const Home());
   }
 
-  Future<void> createUserWithNameEmailAndPassword(
+  Future<User?> createUserWithNameEmailAndPassword(
       String email, String password) async {
     try {
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      firebaseUser.value != null
-          ? Get.offAll(() => const Home())
-          : Get.offAll(() => const LoginScreen());
+
+      if (firebaseUser.value != null) {
+        Get.offAll(() => const Home());
+      }
+      return firebaseUser.value;
     } on FirebaseAuthException catch (e) {
       final ex = SignUpWithEmailAndPasswordFailure.code(e.code);
-      print('FIREBASE AUTH EXCEPTION - ${ex.message}');
+      showSnackkBar(
+        message: ex.message,
+        title: 'Try Again',
+        icon: const Icon(Icons.error),
+      );
+      // print('FIREBASE AUTH EXCEPTION - ${ex.message}');
       throw ex;
     } catch (_) {
       final ex = SignUpWithEmailAndPasswordFailure();
-      print('EXCEPTION - ${ex.message}');
+      showSnackkBar(
+        message: ex.message,
+        title: 'Try Again',
+        icon: const Icon(Icons.error),
+      );
+      // print('EXCEPTION - ${ex.message}');
       throw ex;
     }
   }
@@ -50,13 +64,33 @@ class AuthenticationRepository extends GetxController {
           : Get.offAll(() => const LoginScreen());
     } on FirebaseAuthException catch (e) {
       final ex = SignUpWithEmailAndPasswordFailure.code(e.code);
-      print('FIREBASE AUTH EXCEPTION - ${ex.message}');
+      showSnackkBar(
+        message: ex.message,
+        title: 'Try Again',
+        icon: const Icon(Icons.error),
+      );
+      // print('FIREBASE AUTH EXCEPTION - ${ex.message}');
       throw ex;
     } catch (_) {
       final ex = SignUpWithEmailAndPasswordFailure();
-      print('EXCEPTION - ${ex.message}');
+      showSnackkBar(
+        message: ex.message,
+        title: 'Try Again',
+        icon: const Icon(Icons.error),
+      );
+      // print('EXCEPTION - ${ex.message}');
       throw ex;
     }
+  }
+
+  Future<void> resetPassword(email) async {
+    await _auth.sendPasswordResetEmail(email: email);
+    Get.offAll(() => const LoginScreen());
+    showSnackkBar(
+      message: 'Password Reset Mail Send SuccessFully',
+      title: 'Check Your Mail',
+      icon: const Icon(Icons.done),
+    );
   }
 
   Future<void> logOut() async {

@@ -1,3 +1,4 @@
+import 'package:design/screens/forms/forgotpassword_form.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
@@ -9,8 +10,6 @@ class ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
     with SingleTickerProviderStateMixin {
-  final TextEditingController _emailController = TextEditingController();
-
   late AnimationController _animationController;
   late Animation<double> _animation;
 
@@ -41,40 +40,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
       ),
       body: SingleChildScrollView(
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/images/logo.png',
-                height: _animationController.value * 100,
-                width: _animationController.value * 100,
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'Growth Guards',
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: TextFormField(
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    labelText: 'Enter Your Email',
-                  ),
-                ),
-              ),
-              FilledButton(
-                child: const Text('Send Link'),
-                onPressed: () async {
-                  //Authentication Code
-                },
-              ),
-            ],
-          ),
+          child: ForgotPasswordForm(
+              animationController: _animationController, animation: _animation),
         ),
       ),
     );

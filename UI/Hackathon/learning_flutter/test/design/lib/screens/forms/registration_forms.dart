@@ -1,3 +1,4 @@
+import 'package:design/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -78,9 +79,12 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   child: const Text('Sign Up'),
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {
-                      RegistrationController.instance.registerUser(
-                          controller.email.text.trim(),
-                          controller.password.text.trim());
+                      final user = UserModel(
+                        name: controller.name.text.trim(),
+                        email: controller.email.text.trim(),
+                        password: controller.password.text.trim(),
+                      );
+                      RegistrationController.instance.createUser(user);
                     }
                   },
                 ),
