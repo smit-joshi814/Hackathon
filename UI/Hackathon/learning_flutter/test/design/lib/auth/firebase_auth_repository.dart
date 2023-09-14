@@ -1,5 +1,5 @@
 import 'package:design/auth/auth_exceptions.dart';
-import 'package:design/screens/home.dart';
+import 'package:design/screens/home/home.dart';
 import 'package:design/screens/login.dart';
 import 'package:design/utility/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
