@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HomeNotification extends StatelessWidget {
-  const HomeNotification({super.key});
+class NotificationScreen extends StatelessWidget {
+  const NotificationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,23 +14,26 @@ class HomeNotification extends StatelessWidget {
   PreferredSizeWidget appBar() {
     return AppBar(
       title: const Text('Notification Screen'),
+      backgroundColor: Colors.transparent,
+      centerTitle: true,
     );
   }
 
   Widget listView() {
     return ListView.separated(
-        itemBuilder: (context, index) {
-          return listViewItem(index);
-        },
-        separatorBuilder: (context, index) {
-          return const Divider(height: 10);
-        },
-        itemCount: 12);
+      itemBuilder: (context, index) {
+        return listViewItem(index);
+      },
+      separatorBuilder: (context, index) {
+        return const Divider(height: 5);
+      },
+      itemCount: 10,
+    );
   }
 
   Widget listViewItem(int index) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -70,22 +73,21 @@ class HomeNotification extends StatelessWidget {
   }
 
   Widget message(int index) {
-    return RichText(
-      maxLines: 3,
-      overflow: TextOverflow.ellipsis,
-      text: const TextSpan(
-        text: 'Message',
-        style: TextStyle(
-          fontSize: 20,
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
-        ),
+    return const Padding(
+      padding: EdgeInsets.only(left: 8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TextSpan(
-            text: '  Message Description',
+          Text(
+            'Meessage',
             style: TextStyle(
-              fontWeight: FontWeight.w300,
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
             ),
+          ),
+          Text(
+            'Description About Message',
+            style: TextStyle(fontSize: 15),
           ),
         ],
       ),
@@ -93,21 +95,21 @@ class HomeNotification extends StatelessWidget {
   }
 
   Widget timeAndDate(int index) {
-    return Container(
-      margin: const EdgeInsets.only(top: 5),
-      child: const Row(
+    return const Padding(
+      padding: EdgeInsets.only(left: 8.0, top: 5.0),
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             '23-01-2021',
             style: TextStyle(
-              fontSize: 10,
+              fontSize: 12,
             ),
           ),
           Text(
             '07:10',
             style: TextStyle(
-              fontSize: 10,
+              fontSize: 12,
             ),
           ),
         ],

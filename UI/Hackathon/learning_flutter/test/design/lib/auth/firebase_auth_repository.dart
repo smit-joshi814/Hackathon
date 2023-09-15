@@ -1,10 +1,11 @@
 import 'package:design/auth/auth_exceptions.dart';
-import 'package:design/screens/home/home.dart';
-import 'package:design/screens/login.dart';
+import 'package:design/screens/authentication/login.dart';
 import 'package:design/utility/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../screens/screen_navigator.dart';
 
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
@@ -21,7 +22,7 @@ class AuthenticationRepository extends GetxController {
   _setInitialScreen(User? user) {
     user == null
         ? Get.offAll(() => const LoginScreen())
-        : Get.offAll(() => const Home());
+        : Get.offAll(() => const ScreenNavigator());
   }
 
   Future<User?> createUserWithNameEmailAndPassword(
@@ -31,7 +32,7 @@ class AuthenticationRepository extends GetxController {
           email: email, password: password);
 
       if (firebaseUser.value != null) {
-        Get.offAll(() => const Home());
+        Get.offAll(() => const ScreenNavigator());
       }
       return firebaseUser.value;
     } on FirebaseAuthException catch (e) {
@@ -60,7 +61,7 @@ class AuthenticationRepository extends GetxController {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       firebaseUser.value != null
-          ? Get.offAll(() => const Home())
+          ? Get.offAll(() => const ScreenNavigator())
           : Get.offAll(() => const LoginScreen());
     } on FirebaseAuthException catch (e) {
       final ex = SignUpWithEmailAndPasswordFailure.code(e.code);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HomeBottomNavigationFloting extends StatelessWidget {
-  const HomeBottomNavigationFloting({super.key});
+class FlotingBottomNavigation extends StatelessWidget {
+  const FlotingBottomNavigation({super.key});
 
   @override
   Widget build(BuildContext context) {

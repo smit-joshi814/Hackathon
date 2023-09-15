@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../auth/firebase_auth_repository.dart';
 
-class HomeNavigationDrawer extends StatelessWidget {
-  const HomeNavigationDrawer({super.key});
+class DrawerNavigation extends StatelessWidget {
+  const DrawerNavigation({super.key});
 
   @override
   Widget build(BuildContext context) {

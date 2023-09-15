@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 
 import 'package:design/controllers/login_controller.dart';
 
-import '../forgot_password.dart';
-import '../register.dart';
+import '../authentication/forgot_password.dart';
+import '../authentication/register.dart';
 
 class LoginForm extends StatelessWidget {
   final AnimationController animationController;

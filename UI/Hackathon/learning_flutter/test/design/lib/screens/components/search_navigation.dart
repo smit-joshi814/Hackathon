@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class HomeSearchNavigation extends SearchDelegate {
+class SearchNavigation extends SearchDelegate {
   List<String> allData = ['abc', 'cdf', 'edf'];
   @override
   List<Widget>? buildActions(BuildContext context) {

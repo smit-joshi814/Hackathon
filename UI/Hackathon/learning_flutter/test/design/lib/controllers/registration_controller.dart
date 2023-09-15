@@ -1,6 +1,6 @@
 import 'package:design/auth/firebase_auth_repository.dart';
 import 'package:design/models/user_model.dart';
-import 'package:design/user_repository/user_repository.dart';
+import 'package:design/user/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
