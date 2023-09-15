@@ -1,0 +1,78 @@
+import 'package:flutter/material.dart';
+
+class UserProfileScreen extends StatefulWidget {
+  const UserProfileScreen({super.key});
+
+  @override
+  State<UserProfileScreen> createState() => _UserProfileScreenState();
+}
+
+class _UserProfileScreenState extends State<UserProfileScreen> {
+  String email = "me.vishvaraval785@gmail.com";
+  String phone = "+91 9510666370";
+  String location = "Mehsana, India";
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        const CircleAvatar(
+          radius: 50,
+          backgroundImage: AssetImage('assets/images/logo.png'),
+        ),
+        const SizedBox(height: 10),
+        const Text(
+          "Bharat Patel",
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 2.5,
+          ),
+        ),
+        const SizedBox(
+          height: 20,
+          width: 200,
+          child: Divider(color: Colors.black12),
+        ),
+        InfoCard(text: phone, icon: Icons.phone, onPressed: () async {}),
+        InfoCard(
+            text: location, icon: Icons.location_city, onPressed: () async {}),
+        InfoCard(text: email, icon: Icons.email, onPressed: () async {}),
+      ],
+    );
+  }
+}
+
+class InfoCard extends StatelessWidget {
+  final String text;
+  final IconData icon;
+  final Function onPressed;
+
+  const InfoCard({
+    super.key,
+    required this.text,
+    required this.icon,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      child: Card(
+        margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
+        child: ListTile(
+          leading: Icon(
+            icon,
+          ),
+          title: Text(
+            text,
+            style: const TextStyle(
+              fontSize: 20,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

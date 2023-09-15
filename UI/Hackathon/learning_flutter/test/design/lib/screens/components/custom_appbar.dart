@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 import '../notification_screen.dart';
 
 class CustomAppBar {
-  PreferredSizeWidget customAppBar() {
+  PreferredSizeWidget customAppBar({title = 'Growth Guards'}) {
     return AppBar(
-      title: const Text(
-        'Growth Guards',
-        style: TextStyle(
+      title: Text(
+        title,
+        style: const TextStyle(
           color: Colors.black,
           fontSize: 20,
         ),
@@ -28,7 +28,8 @@ class CustomAppBar {
           },
         ),
       ],
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.transparent,
+      forceMaterialTransparency: true,
     );
   }
 }

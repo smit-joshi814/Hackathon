@@ -1,9 +1,9 @@
 import 'package:design/screens/home/home_screen.dart';
+import 'package:design/screens/profile/user_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'components/bottom_navigation_floting.dart';
 import 'components/drawer_navigation.dart';
 import 'components/custom_appbar.dart';
-import 'splash/splash_screen.dart';
 
 class ScreenNavigator extends StatefulWidget {
   const ScreenNavigator({super.key});
@@ -19,13 +19,19 @@ class _ScreenNavigatorState extends State<ScreenNavigator> {
   Widget build(BuildContext context) {
     final List<Widget> currentScreen = [
       const Home(),
-      const SplashScreen(),
+      const UserProfileScreen(),
     ];
 
     return Scaffold(
       drawer: const DrawerNavigation(),
       appBar: CustomAppBar().customAppBar(),
-      body: currentScreen[_currentIndex],
+      body: SafeArea(
+        maintainBottomViewPadding: true,
+        child: Container(
+          color: Colors.greenAccent.withOpacity(0.1),
+          child: currentScreen[_currentIndex],
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: const [
