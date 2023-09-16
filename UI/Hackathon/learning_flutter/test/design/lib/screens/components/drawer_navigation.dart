@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import '../contactUs/contact_us.dart';
+import '../contactUs/about_us.dart';
 import '../../auth/firebase_auth_repository.dart';
 
 class DrawerNavigation extends StatelessWidget {
@@ -21,21 +23,23 @@ class DrawerNavigation extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.home),
             title: const Text(
-              'Page 1',
+              'About Us',
               style: TextStyle(fontSize: 20),
             ),
             onTap: () {
-              //
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const AboutUs()));
             },
           ),
           ListTile(
             leading: const Icon(Icons.add_a_photo),
             title: const Text(
-              'Page 2',
+              'Contact Us',
               style: TextStyle(fontSize: 20),
             ),
             onTap: () {
-              //
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const ContactUs()));
             },
           ),
           OutlinedButton(
