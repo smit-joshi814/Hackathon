@@ -39,6 +39,7 @@ class ExpertList extends StatelessWidget {
               ),
             ),
           ),
+          const Icon(Icons.message_outlined)
         ],
       ),
     );
@@ -68,14 +69,14 @@ class ExpertList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Smit Joshi',
+            'Expert Name',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),
           ),
           Text(
-            '6354492871',
+            '+91 8000030000',
             style: TextStyle(fontSize: 15),
           ),
         ],

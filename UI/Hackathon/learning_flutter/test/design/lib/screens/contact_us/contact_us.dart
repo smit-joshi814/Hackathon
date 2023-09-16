@@ -27,7 +27,7 @@ class ContactUs extends StatelessWidget {
                 image: AssetImage('assets/images/logo.png'),
               ),
               const SizedBox(height: 30),
-              buildContactInfo("Our toll-free number:", "000-000-0000"),
+              buildContactInfo("Our toll-free number:", "800-007-0000"),
               const SizedBox(height: 20),
               buildContactInfo("Website:", "growthguards@abc.com"),
               const SizedBox(height: 50),
@@ -38,7 +38,7 @@ class ContactUs extends StatelessWidget {
                       icon: Icons.phone,
                       iconColor: Colors.green,
                       onTap: () {
-                        launchUrl(Uri.parse("tel:+0000000000"));
+                        launchUrl(Uri.parse("tel: +91 80000700000"));
                       }),
                   const SizedBox(width: 20),
                   buildSocialIcon(
@@ -46,7 +46,7 @@ class ContactUs extends StatelessWidget {
                       iconColor: Colors.blue,
                       onTap: () {
                         launchUrl(
-                          Uri.parse("https://example.com"),
+                          Uri.parse("https://developer.juhii.co"),
                           mode: LaunchMode.inAppWebView,
                         );
                       }),
