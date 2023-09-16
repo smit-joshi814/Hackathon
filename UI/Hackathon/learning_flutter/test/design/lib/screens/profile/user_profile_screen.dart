@@ -12,10 +12,6 @@ class UserProfileScreen extends StatefulWidget {
 class _UserProfileScreenState extends State<UserProfileScreen> {
   final FirebaseFirestore fb = FirebaseFirestore.instance;
 
-  String email = "me.vishvaraval785@gmail.com";
-  String phone = "+91 9510666370";
-  String location = "Mehsana, India";
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
