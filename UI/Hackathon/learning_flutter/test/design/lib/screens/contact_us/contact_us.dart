@@ -1,16 +1,16 @@
+import 'package:design/utility/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactUs extends StatelessWidget {
-  const ContactUs({Key? key});
+  const ContactUs({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           "Contact Us",
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
@@ -22,30 +22,45 @@ class ContactUs extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image(
+              const Image(
                 height: 200,
                 width: 200,
                 image: AssetImage('assets/images/logo.png'),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               buildContactInfo("Our toll-free number:", "000-000-0000"),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               buildContactInfo("Website:", "growthguards@abc.com"),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  buildSocialIcon(Icons.phone, Colors.green, () {
-                    launch("tel:+0000000000");
-                  }),
-                  SizedBox(width: 20),
-                  buildSocialIcon(Icons.web, Colors.blue, () {
-                    launch("https://example.com");
-                  }),
-                  SizedBox(width: 20),
-                  buildSocialIcon(Icons.facebook, Colors.blue, () {
-                    launch("https://www.facebook.com/yourpage");
-                  }),
+                  buildSocialIcon(
+                      icon: Icons.phone,
+                      iconColor: Colors.green,
+                      onTap: () {
+                        launchUrl(Uri.parse("tel:+0000000000"));
+                      }),
+                  const SizedBox(width: 20),
+                  buildSocialIcon(
+                      icon: Icons.web,
+                      iconColor: Colors.blue,
+                      onTap: () {
+                        launchUrl(
+                          Uri.parse("https://example.com"),
+                          mode: LaunchMode.inAppWebView,
+                        );
+                      }),
+                  const SizedBox(width: 20),
+                  buildSocialIcon(
+                      icon: Icons.facebook,
+                      iconColor: Colors.blue,
+                      onTap: () {
+                        launchUrl(
+                          Uri.parse("https://www.facebook.com/yourpage"),
+                          mode: LaunchMode.inAppWebView,
+                        );
+                      }),
                 ],
               ),
             ],
@@ -60,16 +75,16 @@ class ContactUs extends StatelessWidget {
       children: [
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 20,
             fontWeight: FontWeight.w600,
           ),
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Text(
           value,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 18,
           ),
@@ -78,7 +93,7 @@ class ContactUs extends StatelessWidget {
     );
   }
 
-  Widget buildSocialIcon(IconData icon, Color iconColor, VoidCallback onTap) {
+  Widget buildSocialIcon({icon, iconColor, onTap}) {
     return GestureDetector(
       onTap: onTap,
       child: Container(

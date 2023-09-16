@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../contactUs/contact_us.dart';
-import '../contactUs/about_us.dart';
+import '../contact_us/contact_us.dart';
+import '../contact_us/about_us.dart';
 import '../../auth/firebase_auth_repository.dart';
 
 class DrawerNavigation extends StatelessWidget {
