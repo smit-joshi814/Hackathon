@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:design/screens/desise_full_description/desise_description_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../../utility/utils.dart';
+import 'package:get/get.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -33,9 +33,11 @@ class _HomeState extends State<Home> {
                     // for (int i = 1; i <= 10; i++)
                     TextButton(
                       onPressed: () {
-                        showSnackkBar(
-                            message: 'Tapped $index',
-                            icon: const Icon(Icons.touch_app));
+                        // showSnackkBar(
+                        //     message: 'Tapped $index',
+                        //     icon: const Icon(Icons.touch_app));
+                        Get.to(DesiseDescriptionScreen(
+                            snapsnot: snapshot.data!.docs[index]));
                       },
                       child: Card(
                         elevation: 2,
