@@ -1,3 +1,4 @@
+import 'package:design/screens/experts/expert_list.dart';
 import 'package:design/screens/home/home_screen.dart';
 import 'package:design/screens/profile/user_profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class _ScreenNavigatorState extends State<ScreenNavigator> {
   Widget build(BuildContext context) {
     final List<Widget> currentScreen = [
       const Home(),
+      const ExpertList(),
       const UserProfileScreen(),
     ];
 
@@ -41,6 +43,11 @@ class _ScreenNavigatorState extends State<ScreenNavigator> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.person_search),
+            label: 'Experts',
+            tooltip: 'Experts',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Profile',
             tooltip: 'Profile',
@@ -54,7 +61,7 @@ class _ScreenNavigatorState extends State<ScreenNavigator> {
         },
       ),
       floatingActionButton: const FlotingBottomNavigation(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
     );
   }
 }

@@ -58,6 +58,7 @@ class _HomeState extends State<Home> {
                               child: Column(
                                 children: [
                                   Container(
+                                    width: MediaQuery.sizeOf(context).width,
                                     height: 45,
                                     decoration: BoxDecoration(
                                         color: Colors.black.withOpacity(0.4)),
@@ -90,11 +91,13 @@ class _HomeState extends State<Home> {
                                               Icons.location_on_outlined,
                                               color: Colors.white,
                                             ),
-                                            label: const Text(
-                                              "Ahmedabad - Navrangpura",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w900),
+                                            label: Text(
+                                              snapshot.data!.docs[index]
+                                                  .data()["geoLocation"],
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w900,
+                                              ),
                                             ),
                                           ),
                                         ],
@@ -104,12 +107,13 @@ class _HomeState extends State<Home> {
                                   const SizedBox(
                                     height: 165,
                                   ),
-                                  const SingleChildScrollView(
+                                  SingleChildScrollView(
                                     scrollDirection: Axis.horizontal,
                                     child: Text(
-                                      "Orange Spots On My Fields",
+                                      snapshot.data!.docs[index]
+                                          .data()["imageText"],
                                       softWrap: true,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 25,
                                         fontWeight: FontWeight.bold,
@@ -129,18 +133,20 @@ class _HomeState extends State<Home> {
                                     onPressed: () {},
                                     icon: const Icon(Icons.android,
                                         color: Colors.black87),
-                                    label: const Text(
-                                      'AI dignose: Bilister rust',
-                                      style: TextStyle(color: Colors.black87),
+                                    label: Text(
+                                      'AI dignose: ${snapshot.data!.docs[index].data()["aiDignose"]}',
+                                      style: const TextStyle(
+                                          color: Colors.black87),
                                     ),
                                   ),
                                   TextButton.icon(
                                     onPressed: () {},
                                     icon: const Icon(Icons.person_search,
                                         color: Colors.black87),
-                                    label: const Text(
-                                      'Expert dignose: Anthranose',
-                                      style: TextStyle(color: Colors.black87),
+                                    label: Text(
+                                      'Expert dignose: ${snapshot.data!.docs[index].data()["expertDignose"] != '' ? snapshot.data!.docs[index].data()["expertDignose"] : "No Expert Dignose Available"}',
+                                      style: const TextStyle(
+                                          color: Colors.black87),
                                     ),
                                   ),
                                 ],
