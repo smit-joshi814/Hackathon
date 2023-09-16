@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../contact_us/contact_us.dart';
-import '../contact_us/about_us.dart';
 import '../../auth/firebase_auth_repository.dart';
+import '../contact_us/about_us.dart';
+import '../contact_us/contact_us.dart';
 
 class DrawerNavigation extends StatelessWidget {
   const DrawerNavigation({super.key});
@@ -9,7 +9,7 @@ class DrawerNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
+      child: Column(
         children: [
           const DrawerHeader(
             child: Center(
@@ -41,11 +41,16 @@ class DrawerNavigation extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const ContactUs()));
             },
           ),
-          OutlinedButton(
-            child: const Text('LogOut'),
-            onPressed: () {
-              AuthenticationRepository.instance.logOut();
-            },
+          const Spacer(), // Pushes the "LogOut" button to the bottom
+          SizedBox(
+            width: double.infinity, // Full width
+            child: TextButton.icon(
+              label: const Text('LogOut'),
+              onPressed: () {
+                AuthenticationRepository.instance.logOut();
+              },
+              icon: const Icon(Icons.logout),
+            ),
           ),
         ],
       ),
