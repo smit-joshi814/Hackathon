@@ -1,24 +1,26 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:design/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:design/controllers/login_controller.dart';
+import 'package:design/controllers/registration_controller.dart';
 
-import '../authentication/forgot_password.dart';
-import '../authentication/register.dart';
-
-class LoginForm extends StatelessWidget {
+class RegistrationForm extends StatefulWidget {
   final AnimationController animationController;
   final Animation<double> animation;
-  const LoginForm({
+  const RegistrationForm({
     Key? key,
     required this.animationController,
     required this.animation,
   }) : super(key: key);
 
   @override
+  State<RegistrationForm> createState() => _RegistrationFormState();
+}
+
+class _RegistrationFormState extends State<RegistrationForm> {
+  @override
   Widget build(BuildContext context) {
-    final controller = Get.put(LoginController());
+    final controller = Get.put(RegistrationController());
     final formKey = GlobalKey<FormState>();
     return Form(
       key: formKey,
@@ -27,8 +29,8 @@ class LoginForm extends StatelessWidget {
         children: [
           Image.asset(
             'assets/images/logo.png',
-            height: animationController.value * 100,
-            width: animationController.value * 100,
+            height: widget.animationController.value * 100,
+            width: widget.animationController.value * 100,
           ),
           const SizedBox(height: 20),
           const Text(
@@ -37,6 +39,16 @@ class LoginForm extends StatelessWidget {
           ),
           const SizedBox(
             height: 25,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextFormField(
+              controller: controller.name,
+              keyboardType: TextInputType.name,
+              decoration: const InputDecoration(
+                labelText: 'Name',
+              ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
@@ -63,38 +75,26 @@ class LoginForm extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                FilledButton(
+                OutlinedButton(
                   child: const Text('LogIn'),
                   onPressed: () async {
+                    Navigator.pop(context);
+                  },
+                ),
+                FilledButton(
+                  child: const Text('Sign Up'),
+                  onPressed: () async {
                     if (formKey.currentState!.validate()) {
-                      LoginController.instance.loginUser(
-                          controller.email.text.trim(),
-                          controller.password.text.trim());
+                      final user = UserModel(
+                        name: controller.name.text.trim(),
+                        email: controller.email.text.trim(),
+                        password: controller.password.text.trim(),
+                      );
+                      RegistrationController.instance.createUser(user);
                     }
                   },
                 ),
-                OutlinedButton(
-                  child: const Text('Sign Up'),
-                  onPressed: () async {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const RegisterScreen()));
-                  },
-                ),
               ],
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ForgotPasswordScreen()));
-            },
-            child: const Text(
-              'Forgot password?',
-              style: TextStyle(color: Colors.black54),
             ),
           ),
         ],

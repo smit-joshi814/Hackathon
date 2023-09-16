@@ -1,26 +1,24 @@
-import 'package:design/models/user_model.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:design/controllers/registration_controller.dart';
+import 'package:design/controllers/login_controller.dart';
 
-class RegistrationForm extends StatefulWidget {
+import '../forgot_password.dart';
+import '../register.dart';
+
+class LoginForm extends StatelessWidget {
   final AnimationController animationController;
   final Animation<double> animation;
-  const RegistrationForm({
+  const LoginForm({
     Key? key,
     required this.animationController,
     required this.animation,
   }) : super(key: key);
 
   @override
-  State<RegistrationForm> createState() => _RegistrationFormState();
-}
-
-class _RegistrationFormState extends State<RegistrationForm> {
-  @override
   Widget build(BuildContext context) {
-    final controller = Get.put(RegistrationController());
+    final controller = Get.put(LoginController());
     final formKey = GlobalKey<FormState>();
     return Form(
       key: formKey,
@@ -29,8 +27,8 @@ class _RegistrationFormState extends State<RegistrationForm> {
         children: [
           Image.asset(
             'assets/images/logo.png',
-            height: widget.animationController.value * 100,
-            width: widget.animationController.value * 100,
+            height: animationController.value * 100,
+            width: animationController.value * 100,
           ),
           const SizedBox(height: 20),
           const Text(
@@ -39,16 +37,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
           ),
           const SizedBox(
             height: 25,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextFormField(
-              controller: controller.name,
-              keyboardType: TextInputType.name,
-              decoration: const InputDecoration(
-                labelText: 'Name',
-              ),
-            ),
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
@@ -75,26 +63,38 @@ class _RegistrationFormState extends State<RegistrationForm> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                FilledButton(
+                OutlinedButton(
                   child: const Text('Sign Up'),
                   onPressed: () async {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const RegisterScreen()));
+                  },
+                ),
+                FilledButton(
+                  child: const Text('LogIn'),
+                  onPressed: () async {
                     if (formKey.currentState!.validate()) {
-                      final user = UserModel(
-                        name: controller.name.text.trim(),
-                        email: controller.email.text.trim(),
-                        password: controller.password.text.trim(),
-                      );
-                      RegistrationController.instance.createUser(user);
+                      LoginController.instance.loginUser(
+                          controller.email.text.trim(),
+                          controller.password.text.trim());
                     }
                   },
                 ),
-                OutlinedButton(
-                  child: const Text('LogIn'),
-                  onPressed: () async {
-                    Navigator.pop(context);
-                  },
-                ),
               ],
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ForgotPasswordScreen()));
+            },
+            child: const Text(
+              'Forgot password?',
+              style: TextStyle(color: Colors.black54),
             ),
           ),
         ],

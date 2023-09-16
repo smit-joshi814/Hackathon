@@ -159,7 +159,7 @@ class _HomeState extends State<Home> {
           } else if (snapshot.connectionState == ConnectionState.none) {
             return const Text("No data");
           }
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         });
   }
 

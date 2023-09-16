@@ -20,6 +20,9 @@ class SignUpWithEmailAndPasswordFailure {
       case 'user-disabled':
         return SignUpWithEmailAndPasswordFailure(
             'the user has been disabled please contact support for help');
+      case 'INVALID_LOGIN_CREDENTIALS':
+        return SignUpWithEmailAndPasswordFailure(
+            'Email or Password dosen\'t match');
       default:
         return SignUpWithEmailAndPasswordFailure();
     }

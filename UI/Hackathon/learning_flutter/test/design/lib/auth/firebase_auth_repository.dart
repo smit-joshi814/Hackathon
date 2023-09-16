@@ -60,10 +60,12 @@ class AuthenticationRepository extends GetxController {
       String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
+      Get.put(firebaseUser);
       firebaseUser.value != null
           ? Get.offAll(() => const ScreenNavigator())
           : Get.offAll(() => const LoginScreen());
     } on FirebaseAuthException catch (e) {
+      // print("Erroe code " + e.code);
       final ex = SignUpWithEmailAndPasswordFailure.code(e.code);
       showSnackkBar(
         message: ex.message,

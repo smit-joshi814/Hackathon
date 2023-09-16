@@ -1,4 +1,4 @@
-import 'package:design/screens/forms/forgotpassword_form.dart';
+import 'package:design/screens/authentication/forms/forgotpassword_form.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {

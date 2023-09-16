@@ -1,4 +1,4 @@
-import 'package:design/screens/forms/registration_forms.dart';
+import 'package:design/screens/authentication/forms/registration_forms.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
