@@ -20,7 +20,7 @@ class DrawerNavigation extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: const Icon(Icons.home),
+            leading: const Icon(Icons.group),
             title: const Text(
               'About Us',
               style: TextStyle(fontSize: 20),
@@ -31,7 +31,7 @@ class DrawerNavigation extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.add_a_photo),
+            leading: const Icon(Icons.support),
             title: const Text(
               'Contact Us',
               style: TextStyle(fontSize: 20),

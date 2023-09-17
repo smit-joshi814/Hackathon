@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../database/upload_image.dart';
-
 class FlotingBottomNavigation extends StatefulWidget {
   const FlotingBottomNavigation({super.key});
 
@@ -16,16 +14,19 @@ class FlotingBottomNavigation extends StatefulWidget {
 }
 
 class _FlotingBottomNavigationState extends State<FlotingBottomNavigation> {
-  String? pickedImage;
+  File? pickedImage;
 
   pickImage(ImageSource imageType) async {
     try {
       final photo = await ImagePicker().pickImage(source: imageType);
       if (photo == null) return;
-      final tempImage = File(photo.path);
-      pickedImage = await ImageOperations().uploadImage(tempImage);
+
       setState(() {
-        Get.to(() => const UploadSplash(), arguments: pickedImage);
+        final pickedImage = File(photo.path);
+        Get.to(() => const UploadSplash(),
+            arguments: pickedImage,
+            transition: Transition.rightToLeftWithFade,
+            duration: const Duration(milliseconds: 700));
       });
 
       // Get.back();
@@ -77,6 +78,7 @@ class _FlotingBottomNavigationState extends State<FlotingBottomNavigation> {
                   ElevatedButton.icon(
                     onPressed: () {
                       pickImage(ImageSource.camera);
+                      Get.back();
                     },
                     icon: const Icon(
                       Icons.camera,
@@ -88,6 +90,7 @@ class _FlotingBottomNavigationState extends State<FlotingBottomNavigation> {
                   ElevatedButton.icon(
                     onPressed: () {
                       pickImage(ImageSource.gallery);
+                      Get.back();
                     },
                     icon: const Icon(
                       Icons.image,

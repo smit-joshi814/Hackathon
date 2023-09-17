@@ -14,7 +14,7 @@ class UploadSplash extends StatefulWidget {
 }
 
 class _UploadSplashState extends State<UploadSplash> {
-  File? pickedImage = Get.find();
+  File? pickedImage = Get.arguments;
 
   var nameController = TextEditingController();
 
