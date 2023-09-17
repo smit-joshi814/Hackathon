@@ -29,7 +29,7 @@ class ContactUs extends StatelessWidget {
               const SizedBox(height: 30),
               buildContactInfo("Our toll-free number:", "800-007-0000"),
               const SizedBox(height: 20),
-              buildContactInfo("Website:", "growthguards@abc.com"),
+              buildContactInfo("Website:", "https://digvijay.rf.gd"),
               const SizedBox(height: 50),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -46,7 +46,7 @@ class ContactUs extends StatelessWidget {
                       iconColor: Colors.blue,
                       onTap: () {
                         launchUrl(
-                          Uri.parse("https://developer.juhii.co"),
+                          Uri.parse("https://digvijay.rf.gd"),
                           mode: LaunchMode.inAppWebView,
                         );
                       }),
@@ -56,7 +56,8 @@ class ContactUs extends StatelessWidget {
                       iconColor: Colors.blue,
                       onTap: () {
                         launchUrl(
-                          Uri.parse("https://www.facebook.com/yourpage"),
+                          Uri.parse(
+                              "https://www.facebook.com/digvijay.jakhaniyaaa/"),
                           mode: LaunchMode.inAppWebView,
                         );
                       }),
